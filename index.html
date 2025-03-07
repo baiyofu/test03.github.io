@@ -34,6 +34,78 @@
   <link rel="stylesheet" href="./static/css/dics.original.css">
   <script src="./static/js/event_handler.js"></script>
   <script src="./static/js/dics.original.js"></script>
+
+  <style>
+   body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row; /* 设置为水平布局 */
+      gap: 20px; /* 元素之间的间距 */
+      justify-content: center; /* 水平居中 */
+      align-items: flex-start; /* 顶部对齐 */
+      flex-wrap: wrap; /* 如果内容过多，允许换行 */
+      padding: 20px;
+    }
+
+    .section {
+      flex: 1; /* 每个区块占据相等的宽度 */
+      max-width: 45%; /* 限制每个区块的最大宽度 */
+      margin: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 添加轻微阴影 */
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      list-style: none;
+      padding: 0;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 15px;
+    }
+
+    .nav-item {
+      flex: 1;
+      text-align: center;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background-color: #f0f8ff;
+      color: #0056b3;
+      border-radius: 4px;
+    }
+
+    .b-dics {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap; /* 如果图片太多，允许换行 */
+    }
+
+    .b-dics img {
+      max-width: 48%; /* 图片的最大宽度，确保两张图片并排 */
+      height: auto; /* 保持图片比例 */
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+  </style>
 </head>
 <body>
 
@@ -371,6 +443,57 @@
     </div>
   </div>
 </section>
+
+
+<div class="container">
+    <!-- 第一部分 -->
+    <div class="section">
+      <ul class="nav nav-tabs nav-fill nav-justified" id="object-scale-recon-garden">
+        <li class="nav-item">
+          <a class="nav-link" onclick="objectSceneEventGarden(0)">\(L_0\)</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick="objectSceneEventGarden(1)">\(L_1\)</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" onclick="objectSceneEventGarden(2)">\(L_2\)</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick="objectSceneEventGarden(3)">\(L_3\)</a>
+        </li>
+      </ul>
+      <div class="b-dics">
+        <img src="static/images/360_images/garden_l2_downsample.png" alt="Downsample">  
+        <img src="static/images/360_images/garden_l2_single.png" alt="Single-scale">
+        <img src="static/images/360_images/garden_l2_ours.png" alt="LapisGS (ours)">
+        <img src="static/images/360_images/garden_l2_multiscale.png" alt="Multiscale">
+      </div>
+    </div>
+
+    <!-- 第二部分 -->
+    <div class="section">
+      <ul class="nav nav-tabs nav-fill nav-justified" id="object-scale-recon-bonsai">
+        <li class="nav-item">
+          <a class="nav-link" onclick="objectSceneEventBonsai(0)">\(L_0\)</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" onclick="objectSceneEventBonsai(1)">\(L_1\)</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick="objectSceneEventBonsai(2)">\(L_2\)</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick="objectSceneEventBonsai(3)">\(L_3\)</a>
+        </li>
+      </ul>
+      <div class="b-dics">
+        <img src="static/images/360_images/bonsai_l1_downsample.png" alt="Downsample">  
+        <img src="static/images/360_images/bonsai_l1_single.png" alt="Single-scale">
+        <img src="static/images/360_images/bonsai_l1_ours.png" alt="LapisGS (ours)">
+        <img src="static/images/360_images/bonsai_l1_multiscale.png" alt="Multiscale">
+      </div>
+    </div>
+  </div>
 
 
 
