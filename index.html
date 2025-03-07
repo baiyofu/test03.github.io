@@ -1,0 +1,991 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="LapisGS: Layered Progressive 3D Gaussian Splatting for Adaptive Streaming.">
+  <meta name="keywords" content="Adaptive streaming, 3D Gaussian Splatting, Level of Details">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LapisGS</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="static/css/bootstrap-4.4.1.css">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="icon" href="static/images/lapis.png">
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+  <link rel="stylesheet" href="static/css/dics.original.css">
+  <script src="static/js/event_handler.js"></script>
+  <script src="static/js/dics.original.js"></script>
+</head>
+<body>
+
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title" style="margin-bottom: 0">
+            <!-- <img src="static/images/lapis.png" alt="icon" style="width: 24px; vertical-align: middle; margin-right: 8px;"> -->
+            <img src="static/images/title.png" alt="icon" style="height: 1em; vertical-align: middle; margin-right: 0.1em;">
+            <strong>LapisGS: </strong>
+          </h1>
+          <h1 class="title is-2 publication-title" style="margin-top: 0; margin-bottom: 0">Layered Progressive 3D Gaussian Splatting for Adaptive Streaming</h2>
+          <br>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://yuang-ian.github.io">Yuang Shi</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=PbKu-PsAAAAJ&hl=en">Simone Gasparini</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.de/citations?user=H8QDhhAAAAAJ&hl=en">Géraldine Morin</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.comp.nus.edu.sg/~ooiwt/">Wei Tsang Ooi</a><sup>1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>National University of Singapore,</span>
+            <span class="author-block"><sup>2</sup>IRIT - University of Toulouse</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2408.14823"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="http://arxiv.org/abs/2408.14823"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/nus-vv-streams/lapis-gs"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/teaser.mp4"
+                  type="video/mp4">
+        </video> -->
+        <img src="static/images/teaser.png" class="center" style="width: 90%">
+        <br>
+        <br>
+        <h2 class="subtitle has-text-justified">
+          TL;DR: We introduce <strong><i>LapisGS</i></strong>, a layered progressive 3D Gaussian Splatting (3DGS), for adaptive streaming and view-adaptive rendering.
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ -->
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <h2 class="title is-3 has-text-centered">Abstract</h2>
+    <hr style="width: 90%; height: 2px; background-color: #53a8da; border: none; margin: 30px auto;">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            The rise of Extended Reality (XR) requires efficient streaming of 3D online worlds, challenging current 3DGS representations to adapt to bandwidth-constrained environments. 
+          </p>
+          <p>
+            We propose <strong><i>LapisGS</i></strong>, a layered 3DGS that supports adaptive streaming and progressive rendering. Our method constructs a layered structure for cumulative representation, incorporates dynamic opacity optimization to maintain visual fidelity, and utilizes occupancy maps to efficiently manage Gaussian splats.  This proposed model offers a progressive representation supporting a continuous rendering quality adapted for bandwidth-aware streaming.
+          </p>
+          <p>
+            Extensive experiments validate the effectiveness of our approach in balancing visual fidelity with the compactness of the model, with up to <strong>50.71%</strong> improvement in SSIM, <strong>286.53%</strong> improvement in LPIPS, and <strong>318.41%</strong> reduction in model size, and shows its potential for bandwidth-adapted 3D streaming and rendering applications.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Motivation. -->
+    <h2 class="title is-3 has-text-centered">Motivation</h2>
+    <hr style="width: 90%; height: 2px; background-color: #53a8da; border: none; margin: 30px auto;">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-two-fifths image-column">
+        <img src="static/images/illustration_comp.png" class="center">
+      </div>
+      <div class="column is-three-fifths image-column">
+        <div class="content has-text-justified">
+          <p>
+            Existing methods are primarily designed for reconstruction quality and rendering speed, without considering the challenges of adaptive streaming. These space-based 3DGS hierarchies (Upper at the Figure) feature discrete quality layers, each independently represented by a set of anchor splats. This approach requires substantial computational resources for maintenance and navigation, especially with frequent level transitions, and limits view-adaptive rendering. 
+          </p>
+          <p>
+            To stream 3DGS over diverse and dynamic networks and heterogeneous devices, a layered progressive representation (Lower at the Figure) is needed. This representation must meet specific requirements: (i) The subsets of Gaussian splats in the model are able to represent complete 3D content with reduced details; (ii) The progressive LOD inherently shares visual information with lower levels to minimize redundancy in streaming and support view-adaptive rendering.
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Motivation. -->
+    <h2 class="title is-3 has-text-centered">Methodology</h2>
+    <hr style="width: 90%; height: 2px; background-color: #53a8da; border: none; margin: 30px auto;">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-two-fifths image-column">
+        <div class="content has-text-justified">
+          <p>
+            At the core of LapisGS is a <strong>layered structure for cumulative representation</strong>, where each layer adds additional details to the existing base layers, progressively refining the representation. 
+          </p>
+          <p>
+            To force coherence among layers while avoiding re-encoding lower layers, we incorporate <strong>dynamic opacity optimization</strong> during training, allowing for selective adjustment of layer contributions for optimal visual fidelity. 
+          </p>
+          <p>
+            We then utilize an <strong>occupancy map</strong> to track and exclude less important Gaussian splats during streaming and rendering. 
+          </p>
+        </div>
+      </div>
+      <div class="column is-three-fifths image-column">
+        <img src="static/images/methodology.png" class="center">
+      </div>
+    </div>
+</section>
+
+
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="margin-top: -20px">Methodology</h2>
+        <hr style="width: 90%; height: 2px; background-color: #53a8da; border: none; margin: 30px auto;">
+        <img src="./static/images/methodology.png" class="center" style="width: 60%;">
+        <div class="content has-text-justified">
+          <p>
+            At the core of LapisGS is a layered structure for cumulative representation, where each layer adds additional details to the existing base layers, progressively refining the representation. 
+          </p>
+          <p>
+            To force coherence among layers while avoiding re-encoding lower layers, we incorporate dynamic opacity optimization during training, allowing for selective adjustment of layer contributions for optimal visual fidelity. 
+          </p>
+          <p>
+            We then utilize an occupancy map to track and exclude less important Gaussian splats during streaming and rendering, improving computational and storage efficiency. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered" style="margin-top: -30px">Results</h2>
+        <hr style="width: 90%; height: 2px; background-color: #53a8da; border: none; margin: 30px auto;">
+        <img src="static/images/results_fig.png" class="center" style="width: 100%; margin: 30px auto;">
+        <h3 class="title is-4">Comparison wtih Downsample Method</h3>
+        <div class="content has-text-justified">
+          <p>
+            The downsampled model shows significant degradation in visual quality as model size decreases. This suggests that traditional downsampling methods for point clouds are inadequate for 3DGS, primarily because they fail to re-optimize or re-learn the model for the reduced set of splats. Given the unique distribution and anisotropic nature of Gaussian splats, simply reducing the number of splats without retraining does not capture the high-frequency details or maintain the model's original fidelity.
+          </p>
+        </div>
+        <h3 class="title is-4">Comparison wtih Single-scale Method</h3>
+        <div class="content has-text-justified">
+          <p>
+            LapisGS achieves notable improvements in both visual quality and model size compared to the single-scale method. These results emphasize the necessity of constructing a multiscale 3DGS LOD model and highlight the effectiveness and efficiency of our method in maintaining visual fidelity while reducing data overhead.
+          </p>
+        </div>
+        <h3 class="title is-4">Comparison wtih Multiscale Method</h3>
+        <div class="content has-text-justified">
+          <p>
+            LapisGS rivals the multiscale model, which serves as the upper bound for reconstruction quality, achieving comparable visual fidelity with up to a 2.33X smaller model size. This demonstrates that our method effectively balances high and low resolutions, creating a compact yet highly detailed representation.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4">Visualized Comparison</h3>
+          <p>
+            We provide sample renderings of different methods for better comparison. The following interactable figures show the results of the Downsample, Single-scale, LapisGS, and Multiscale methods for the garden and bonsai scenes at different levels of detail (\(L_0\), \(L_1\), \(L_2\), and \(L_3\)).
+          </p>
+        </div>
+        
+        <div class="container">
+          <ul class="nav nav-tabs nav-fill nav-justified" id="object-scale-recon-garden">
+              <li class="nav-item">
+                <a class="nav-link" onclick="objectSceneEventGarden(0)">\(L_0\)</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="objectSceneEventGarden(1)">\(L_1\)</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" onclick="objectSceneEventGarden(2)">\(L_2\)</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="objectSceneEventGarden(3)">\(L_3\)</a>
+              </li>
+          </ul>
+          <div class="b-dics" style="width: 1000px; font-weight: 600;">
+              <img src="static/images/360_images/garden_l2_downsample.png" alt="Downsample">  
+              <img src="static/images/360_images/garden_l2_single.png" alt="Single-scale">
+              <img src="static/images/360_images/garden_l2_ours.png" alt="LapisGS (ours)">
+              <img src="static/images/360_images/garden_l2_multiscale.png" alt="Multiscale">
+          </div>
+          <br>
+          <br>
+          <ul class="nav nav-tabs nav-fill nav-justified" id="object-scale-recon-bonsai">
+              <li class="nav-item">
+                <a class="nav-link" onclick="objectSceneEventBonsai(0)">\(L_0\)</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" onclick="objectSceneEventBonsai(1)">\(L_1\)</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="objectSceneEventBonsai(2)">\(L_2\)</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="objectSceneEventBonsai(3)">\(L_3\)</a>
+              </li>
+          </ul>
+          <div class="b-dics" style="width: 1000px; font-weight: 600;">
+              <img src="static/images/360_images/bonsai_l1_downsample.png" alt="Downsample">  
+              <img src="static/images/360_images/bonsai_l1_single.png" alt="Single-scale">
+              <img src="static/images/360_images/bonsai_l1_ours.png" alt="LapisGS (ours)">
+              <img src="static/images/360_images/bonsai_l1_multiscale.png" alt="Multiscale">
+          </div>
+        </div>
+
+      
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{shi2024lapisgs,
+  author    = {Shi, Yuang and Gasparini, Simone and Morin, Géraldine and Ooi, Wei Tsang},
+  title     = {{LapisGS}: Layered Progressive {3D Gaussian} Splatting for Adaptive Streaming},
+  publisher = {{IEEE}},
+  booktitle = {International Conference on 3D Vision, 3DV 2025, Singapore, March 25-28, 2025},
+  year      = {2025},
+}</code></pre>
+
+    <p>Based on our LapisGS, we built the first ever dynamic 3DGS streaming system, which achieves superior performance in both live streaming and on-demand streaming. Our work is to be appeared in the MMSys'25 in April 2025.  Access to the <a href="https://drive.google.com/file/d/1iDz1ExOd1LrPhA7fv4DbLUbzn-Jioihn/view?usp=share_link" target="_blank">Pre-print Paper</a>).</p>
+    <pre><code>@inproceedings{sun2025lts,
+      author    = {Sun, Yuan-Chun and Shi, Yuang and Lee, Cheng-Tse and Zhu, Mufeng and Ooi, Wei Tsang and Liu, Yao and Huang, Chun-Ying and Hsu, Cheng-Hsin},
+      title     = {{LTS}: A {DASH} Streaming System for Dynamic Multi-Layer {3D Gaussian} Splatting Scenes},
+      publisher = {{ACM}},
+      booktitle = {The 16th ACM Multimedia Systems Conference, MMSys 2025, 2025},
+      year      = {2025},
+}</code></pre>
+
+  </div>
+</section>
+
+
+
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+            This webpage template is from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>. 
+            We sincerely thank <a href="https://keunhong.com/">Keunhong Park</a> for developing and open-sourcing this template. 
+            The video comparison with sliding bar is from <a href="https://dorverbin.github.io/refnerf/">Ref-NeRF</a>. 
+            The image comparison with sliding bar is from <a href="https://research.nvidia.com/labs/dir/neuralangelo/">Neuralangelo</a>. 
+          </p>
+        </div>
+      </div>
+          <p></p>
+        </div>
+      </div>
+</footer>
+
+</body>
+</html>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="google-site-verification" content="ZWLT9u3UeujE9QYOYDZT64WOrNxXVgu46mGCZVDve1c" />
+  <meta charset="utf-8">
+  <meta name="description"
+        content="MegaSurf: Efficient and Robust Sampling Guided Neural Surface Reconstruction Framework of Scalable Large Scene">
+  <meta name="keywords" content="Surface reconstruction, Large scale scene, Differentiable rendering">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MegaSurf: Efficient and Robust Sampling Guided Neural Surface Reconstruction Framework of Scalable Large Scene</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/drone_icon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/event_handler.js"></script>
+  <script src="./static/js/dics.original.js"></script>
+
+  <!-- linked bakedsdf template -->
+  <!--     <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="https://bakedsdf.github.io/css/app.css">
+
+    <link rel="stylesheet" href="https://bakedsdf.github.io/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+
+    <script src="https://bakedsdf.github.io/js/app.js"></script>
+	
+<!--
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+-->
+	
+	<link rel="stylesheet" href="https://bakedsdf.github.io/css/dics.min.css">
+    <script src="https://bakedsdf.github.io/scripts/dics.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', domReady);
+        function domReady() {
+            for (const e of document.querySelectorAll(".b-dics")) {
+                new Dics({
+                    container: e,
+                    textPosition: "top"
+                });
+            }
+        }
+    </script>
+
+  
+</head>
+<body>
+<!--
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://annonymous.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://anonymous1.github.io">
+            annonymous1
+          </a>
+          <a class="navbar-item" href="https://annonymous2.github.io">
+            annonymous2
+          </a>
+          <a class="navbar-item" href="https://annonymous3.github.io">
+            annonymous3
+          </a>
+          <a class="navbar-item" href="https://annonymous4.github.io">
+            annonymous4
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+-->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">MegaSurf: Efficient and Robust Sampling Guided Neural Surface Reconstruction Framework of Scalable Large Scene</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              ANONYMOUS AUTHOR(S) 2024</span>
+            <!--
+            <span class="author-block">
+              <a href="https://Annonymous.com">Annonymous</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://Annonymous.com">Annonymous</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://Annonymous.com">Annonymous</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://Annonymous.com">Annonymous</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://Annonymous.com">Annonymous</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://Annonymous.com">Annonymous</a><sup>2</sup>
+            </span>
+            -->
+          </div>
+          <!--
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Annonymous,</span>
+            <span class="author-block"><sup>2</sup>Annonymous Research</span>
+          </div>
+          -->
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://github.com/MegaSurfNsr/MegaSurfNsr.github.io/blob/main/static/sample-authordraft.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <!-- PDF supp Link. -->
+              <span class="link-block">
+                <a href="https://github.com/MegaSurfNsr/MegaSurfNsr.github.io/blob/main/static/supp_megasurf.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Supp Doc</span>
+                </a>
+              </span>
+
+              
+              <span class="link-block">
+                <a 
+                   class=" button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv(TBD)</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a 
+                   class=" button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video(TBD)</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/MegaSurfNsr/megasurf_reimpl"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a 
+                   class=" button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Dataset(TBD)</span>
+                  </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+    <img src="./source/teaser.jpg"
+       class="teaser-image"
+       alt="Teaser image."/>
+      <h2 class="subtitle has-text-centered">
+        MegaSurf is an efficient and robust neural surface reconstruction framework to reconstruct the 3D large-scale scene from thousands of
+input RGB images collected by the drone.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            3D Gaussian Splatting (3DGS) has emerged as a promising technique for novel view synthesis in computer graphics, offering superior flexibility and quality compared to traditional voxel-based and mesh-based methods. However, strong artifacts can be observed when changing the sampling rate, eg., by changing focal length or camera distance; In addition, all Gaussians within the field of view need to participate in rendering, leading to a lack of flexibility in the rendering approach. To address these challenges, we propose a novel hierarchical 3DGS representation that establishes a LOD (Level of Detail) structure for the scene. During the model training phase, we create different layers for various sampling rates, with higher GS layers derived from lower ones. In the rendering phase, our method adaptively selects the Gaussians involved in rendering based on the sampling rate, thereby enhancing rendering efficiency. Additionally, we establish recursive relationships between different levels, allowing higher layers to be inferred from lower layers, significantly reducing model storage requirements. In summary, our approach demonstrates significant improvements in both rendering quality and model storage efficiency compared to existing methods.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+<!--     <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="Annonymous https"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <h2 class="title has-text-centered">Large-scale Reconstruction (<a href="https://vcc.tech/UrbanScene3D">Urbanscene3D</a>)</h2>
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-polytech_bsdf">
+          <video poster="./source/mp4/poster_polytech_bsdf.jpg" id="polytech_bsdf" preload="none" controls muted loop playsinline height="100%">
+            <source src="./source/mp4/polytech_bsdf.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-polytech_bsdfnormal">
+          <video poster="./source/mp4/poster_polytech_bsdfnormal.jpg" preload="none" controls muted loop playsinline height="100%">
+            <source src="./source/mp4/polytech_bsdfnormal.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+
+        <div class="item item-residence_bsdf">
+          <video poster="./source/mp4/poster_residence_bsdf.jpg" id="item-residence_bsdf" preload="none" controls muted loop playsinline height="100%">
+            <source src="./source/mp4/residence_bsdf.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-residence_bsdfnormal">
+          <video poster="./source/mp4/poster_residence_bsdfnormal.jpg" id="residence_bsdfnormal" preload="none" controls muted loop playsinline height="100%">
+            <source src="./source/mp4/residence_bsdfnormal.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-sciart_bsdf">
+          <video poster="./source/mp4/poster_sciart_bsdf.jpg" id="sciart_bsdf" preload="none" controls muted loop playsinline height="100%">
+            <source src="./source/mp4/sciart_bsdf.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-sciart_bsdfnormal">
+          <video poster="./source/mp4/poster_sciart_bsdfnormal.jpg" id="sciart_bsdfnormal" preload="none" controls muted loop playsinline height="100%">
+            <source src="./source/mp4/sciart_bsdfnormal.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-songshanhu_bsdf">
+          <video poster="./source/mp4/poster_songshanhu_bsdf.jpg" id="songshanhu_bsdf" preload="none" controls muted loop playsinline height="100%">
+            <source src="./source/mp4/songshanhu_bsdf.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-songshanhu_bsdfnormal">
+          <video poster="./source/mp4/poster_songshanhu_bsdfnormal.jpg" id="songshanhu_bsdfnormal" preload="none" controls muted loop playsinline height="100%">
+            <source src="./source/mp4/songshanhu_bsdfnormal.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+	
+<section class="section">
+	<div class="container is-max-desktop">
+		<div class="columns is-centered has-text-centered">
+			<div class="column">
+				<h1 class="title has-text-centered">Comparison on Urbanscene3D</h1>
+	      
+				<div class="columns is-centered has-text-centered">
+					<div class="column is-four-fifths">
+					<h2 class="title is-3">Polytech</h2>
+						<div class="b-dics" style="width: 100%">
+						    <img src="./source/compare/polytech_2_bakedangelo.png" alt="Bakedangelo" />
+						    <img src="./source/compare/polytech_2_ours.png" alt="MegaSurf" />
+						    <img src="./source/compare/polytech_1_monoangelo.png" alt="Monoangelo" />
+						    <img src="./source/compare/polytech_1_ours.png" alt="MegaSurf" />
+						</div>
+					</div>
+				</div>
+								
+				<div class="columns is-centered">
+					<div class="column is-four-fifths">
+						<div class="b-dics" style="width: 100%">
+						    <img src="./source/compare/polytech_1_monoangelo.png" alt="Monoangelo" />
+						    <img src="./source/compare/polytech_1_ours.png" alt="MegaSurf" />
+						</div>
+					</div>
+				</div>
+									
+				<div class="columns is-centered">
+					<div class="column is-four-fifths">
+						<div class="b-dics" style="width: 100%">
+						    <img src="./source/compare/polytech_3_acmh.png" alt="ACMH" />
+						    <img src="./source/compare/polytech_3_ours.png" alt="MegaSurf" />
+						</div>
+					</div>
+				</div>
+
+				
+				</br>
+				<div class="columns is-centered has-text-centered">
+					<div class="column is-four-fifths">
+					<h2 class="title is-3">Sciart</h2>
+						<div class="b-dics" style="width: 100%">
+						    <img src="./source/compare/sciart_1_bakedangelo.png" alt="Bakedangelo" />
+						    <img src="./source/compare/sciart_1_ours.png" alt="MegaSurf" />
+						</div>
+					</div>
+				</div>
+								
+				<div class="columns is-centered">
+					<div class="column is-four-fifths">
+						<div class="b-dics" style="width: 100%">
+						    <img src="./source/compare/sciart_3_monoangelo.png" alt="Monoangelo" />
+						    <img src="./source/compare/sciart_3_ours.png" alt="MegaSurf" />
+						</div>
+					</div>
+				</div>
+									
+				<div class="columns is-centered">
+					<div class="column is-four-fifths">
+						<div class="b-dics" style="width: 100%">
+						    <img src="./source/compare/sciart_2_acmh.png" alt="ACMH" />
+						    <img src="./source/compare/sciart_2_ours.png" alt="MegaSurf" />
+						</div>
+					</div>
+				</div>
+
+				</br>
+				<div class="columns is-centered has-text-centered">
+					<div class="column is-four-fifths">
+					<h2 class="title is-3">Residence</h2>
+						<div class="b-dics" style="width: 100%">
+						    <img src="./source/compare/residence_1_bakedangelo.png" alt="Bakedangelo" />
+						    <img src="./source/compare/residence_1_ours.png" alt="MegaSurf" />
+						</div>
+					</div>
+				</div>
+								
+				<div class="columns is-centered">
+					<div class="column is-four-fifths">
+						<div class="b-dics" style="width: 100%">
+						    <img src="./source/compare/residence_3_monoangelo.png" alt="Monoangelo" />
+						    <img src="./source/compare/residence_3_ours.png" alt="MegaSurf" />
+						</div>
+					</div>
+				</div>
+									
+				<div class="columns is-centered">
+					<div class="column is-four-fifths">
+						<div class="b-dics" style="width: 100%">
+						    <img src="./source/compare/residence_2_acmh.png" alt="ACMH" />
+						    <img src="./source/compare/residence_2_ours.png" alt="MegaSurf" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered" style="margin-top: -30px">Results</h2>
+        <hr style="width: 90%; height: 2px; background-color: #53a8da; border: none; margin: 30px auto;">
+        <img src="./static/images/results_fig.png" class="center" style="width: 100%; margin: 30px auto;">
+        <h3 class="title is-4">Comparison wtih Downsample Method</h3>
+        <div class="content has-text-justified">
+        
+        <div class="container">
+          <ul class="nav nav-tabs nav-fill nav-justified" id="object-scale-recon-bonsai">
+              <li class="nav-item">
+                <a class="nav-link" onclick="objectSceneEventGarden(0)">\(L_0\)</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="objectSceneEventGarden(1)">\(L_1\)</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" onclick="objectSceneEventGarden(2)">\(L_2\)</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="objectSceneEventGarden(3)">\(L_3\)</a>
+              </li>
+          </ul>
+          <div class="b-dics" style="width: 1000px; font-weight: 600;">
+              <img src="static/images/360_images/garden_l2_downsample.png" alt="Downsample">  
+              <img src="static/images/360_images/garden_l2_single.png" alt="Single-scale">
+              <img src="static/images/360_images/garden_l2_ours.png" alt="LapisGS (ours)">
+              <img src="static/images/360_images/garden_l2_multiscale.png" alt="Multiscale">
+          </div>
+          <br>
+          <br>
+          <ul class="nav nav-tabs nav-fill nav-justified" id="object-scale-recon-bonsai">
+              <li class="nav-item">
+                <a class="nav-link" onclick="objectSceneEventGarden(0)">\(L_0\)</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="objectSceneEventGarden(1)">\(L_1\)</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" onclick="objectSceneEventGarden(2)">\(L_2\)</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="objectSceneEventGarden(3)">\(L_3\)</a>
+              </li>
+          </ul>
+          <div class="b-dics" style="width: 1000px; font-weight: 600;">
+              <img src="static/images/bonsai_l1_downsample.png" alt="Downsample">  
+              <img src="static/images/bonsai_l1_single.png" alt="Single-scale">
+              <img src="static/images/bonsai_l1_ours.png" alt="LapisGS (ours)">
+              <img src="static/images/bonsai_l1_multiscale.png" alt="Multiscale">
+          </div>
+        </div>
+
+      
+      </div>
+    </div>
+  </div>
+</section>
+
+	
+<!-- <div class="row comp-margin">
+	<div class="column is-four-fifths">
+    <div class="col-md-3 col-md-offset-1">
+	<h3>
+	    Mesh Extraction and Rendering
+	</h3>
+	<div class="b-dics" style="width: 100%">
+	    <img src="./source/mp4/poster_residence_bsdfnormal.jpg" alt="Mesh" />
+	    <img src="./source/mp4/poster_residence_bsdf.jpg" alt="Rendering" />
+	</div>
+    </div>
+</div> -->
+
+
+	
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./source/main.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            The website template was borrowed from <a href="http://mgharbi.com/">Michaël Gharbi</a> and <a
+              href="https://github.com/nerfies/nerfies.github.io">Keunhong Park</a>.
+          </p>
+	  <p>
+            MegaSurf github. MegaSurf Reconstruction.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
+>>>>>>> 23dbdc145d3ade4d2df972d1e49362c28fc5a24a
