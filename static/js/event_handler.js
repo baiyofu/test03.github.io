@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', domReady);
             }
         }
 
-        function objectSceneEventThird(idx) {
+        function objectSceneEventthird(idx) {
             let dics = document.querySelectorAll('.b-dics')[1]
             let sections = dics.getElementsByClassName('b-dics__section')
             let imagesLength = 4
@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', domReady);
                 }
             }
 
-            let scene_list = document.getElementById("object-scale-recon-bonsai").children;
+            let scene_list = document.getElementById("object-scale-recon-third").children;
             for (let i = 0; i < scene_list.length; i++) {
                 if (idx == i) {
                     scene_list[i].children[0].className = "nav-link active"
