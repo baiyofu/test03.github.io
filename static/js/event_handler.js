@@ -176,6 +176,54 @@ document.addEventListener('DOMContentLoaded', domReady);
             }
         }
 
+        function objectSceneEventThird(idx) {
+            let dics = document.querySelectorAll('.b-dics')[1]
+            let sections = dics.getElementsByClassName('b-dics__section')
+            let imagesLength = 4
+            for (let i = 0; i < imagesLength; i++) {
+                let image = sections[i].getElementsByClassName('b-dics__image-container')[0].getElementsByClassName('b-dics__image')[0]
+                switch (idx) {
+                    case 0:
+                        image.src = 'static/images/360_images/third_l0';
+                        break;
+                    case 1:
+                        image.src = 'static/images/360_images/third_l1';
+                        break;
+                    case 2:
+                        image.src = 'static/images/360_images/third_l2';
+                        break;
+                    case 3:
+                        image.src = 'static/images/360_images/third_l3';
+                        break;
+                }
+                switch (i) {
+                    case 0:
+                        image.src = image.src + '_downsample.png';
+                        break;
+                    case 1:
+                        image.src = image.src + '_single.png';
+                        break;
+                    case 2:
+                        image.src = image.src + '_ours.png';
+                        break;
+                    case 3:
+                        image.src = image.src + '_multiscale.png';
+                        break;
+
+                }
+            }
+
+            let scene_list = document.getElementById("object-scale-recon-bonsai").children;
+            for (let i = 0; i < scene_list.length; i++) {
+                if (idx == i) {
+                    scene_list[i].children[0].className = "nav-link active"
+                }
+                else {
+                    scene_list[i].children[0].className = "nav-link"
+                }
+            }
+        }
+
         function ablation3DEvent(idx) {
             let dics = document.querySelectorAll('.b-dics')[1]
             let sections = dics.getElementsByClassName('b-dics__section')
