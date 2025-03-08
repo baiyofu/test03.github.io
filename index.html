@@ -198,13 +198,7 @@
       <div class="column is-four-fifths">
         <div class="content has-text-justified">
           <p>
-            The rise of Extended Reality (XR) requires efficient streaming of 3D online worlds, challenging current 3DGS representations to adapt to bandwidth-constrained environments. 
-          </p>
-          <p>
-            We propose <strong><i>LapisGS</i></strong>, a layered 3DGS that supports adaptive streaming and progressive rendering. Our method constructs a layered structure for cumulative representation, incorporates dynamic opacity optimization to maintain visual fidelity, and utilizes occupancy maps to efficiently manage Gaussian splats.  This proposed model offers a progressive representation supporting a continuous rendering quality adapted for bandwidth-aware streaming.
-          </p>
-          <p>
-            Extensive experiments validate the effectiveness of our approach in balancing visual fidelity with the compactness of the model, with up to <strong>50.71%</strong> improvement in SSIM, <strong>286.53%</strong> improvement in LPIPS, and <strong>318.41%</strong> reduction in model size, and shows its potential for bandwidth-adapted 3D streaming and rendering applications.
+            3D Gaussian Splatting (3DGS) has emerged as a promising technique for novel view synthesis in computer graphics, offering superior flexibility and quality compared to traditional voxel-based and mesh-based methods. However, strong artifacts can be observed when changing the sampling rate, eg., by changing focal length or camera distance; In addition, all Gaussians within the field of view need to participate in rendering, leading to a lack of flexibility in the rendering approach. To address these challenges, we propose a novel hierarchical 3DGS representation that establishes a LOD (Level of Detail) structure for the scene. During the model training phase, we create different layers for various sampling rates, with higher GS layers derived from lower ones. In the rendering phase, our method adaptively selects the Gaussians involved in rendering based on the sampling rate, thereby enhancing rendering efficiency. Additionally, we establish recursive relationships between different levels, allowing higher layers to be inferred from lower layers, significantly reducing model storage requirements. In summary, our approach demonstrates significant improvements in both rendering quality and model storage efficiency compared to existing methods.
           </p>
         </div>
       </div>
